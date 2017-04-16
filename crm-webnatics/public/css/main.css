@@ -1,0 +1,50 @@
+body {
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif !important;
+}
+.container{
+	min-height:490px;
+}
+table td{
+	border:thin solid !important;
+}
+th{
+	text-align:center !important;	
+	background-color:#333333;
+	color:#ffffff;
+	border:thin solid !important;
+}
+header{
+	
+	background-color: #000000;
+}
+footer{
+	
+	text-align:center; 
+	background-color: #000000;
+	color:#ffffff;
+	padding:20px;
+}
+
+.frontPage{
+	background-color:#333333;
+	min-height:660px;
+	overflow: hidden;
+}
+
+.frontPage h1{
+	text-align:center;
+	margin-top:250px;
+	color:#ffffff;
+} 
+.frontPage .form-group{
+	margin:40px auto !important;
+	width:145px;
+}
+.frontPage .form-group input{
+	padding:15px 50px;
+	font-size:18px;	
+}
+#valMsg{
+	color:#FF0000;
+	font-weight:bold;
+}
