@@ -12,9 +12,9 @@ class Customer extends Model
 	    return $this->hasMany('App\Contact','customer_id','customer_id');
 	}
 	
-	public function activitys()
+	public function activities()
 	{
-	    return $this->hasMany('App\Contact','customer_id','customer_id');
+	    return $this->hasMany('App\Activity','customer_id','customer_id');
 	}
      
 }

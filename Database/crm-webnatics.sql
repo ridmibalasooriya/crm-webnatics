@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2017 at 09:35 PM
+-- Generation Time: Apr 18, 2017 at 10:26 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.0.15
 
@@ -44,7 +44,7 @@ CREATE TABLE `activities` (
 
 INSERT INTO `activities` (`id`, `act_id`, `customer_id`, `date`, `activity_type`, `outcomes`, `sales_person`, `created_at`, `updated_at`) VALUES
 (1, 'ActID1', 'CID1', '2017-04-16', 'Call', 'Success', 'Mike', '2017-04-16 18:30:00', '2017-04-16 18:30:00'),
-(2, 'ActID2', 'CID2', '2017-04-15', 'Email', 'Fail', 'Marry', '2017-04-16 14:03:59', '2017-04-16 14:03:59'),
+(2, 'ActID2', 'CID4', '2017-04-15', 'Meeting', 'Fail', 'Marry', '2017-04-16 14:03:59', '2017-04-18 14:50:33'),
 (3, 'ActID3', 'CID2', '2017-04-16', 'Call', 'Success', 'Marry', '2017-04-16 14:04:19', '2017-04-16 14:04:19'),
 (4, 'ActID4', 'CID3', '2017-04-14', 'Meeting', 'Pending', 'Nisha', '2017-04-16 14:04:51', '2017-04-16 14:04:51');
 
@@ -70,8 +70,8 @@ CREATE TABLE `contacts` (
 --
 
 INSERT INTO `contacts` (`id`, `cont_id`, `customer_id`, `name`, `email`, `contact_no`, `created_at`, `updated_at`) VALUES
-(1, 'ContID1', 'CID1', 'Lara', 'lara@email.com', '2345678900', '2017-04-16 18:30:00', '2017-04-16 14:01:47'),
-(2, 'ContID2', 'CID1', 'Jane', 'jane@TCP.com', '1234567890', '2017-04-16 14:01:21', '2017-04-16 14:01:21'),
+(1, 'ContID1', 'CID1', 'Lara', 'lara@email.com', '2345678900', '2017-04-16 18:30:00', '2017-04-18 14:36:40'),
+(2, 'ContID2', 'CID4', 'Jane', 'jane@TCP.com', '1234567890', '2017-04-16 14:01:21', '2017-04-18 14:36:56'),
 (3, 'ContID3', 'CID2', 'Rebecca', 'bec@gmail.com', '9897876765', '2017-04-16 14:02:30', '2017-04-16 14:02:30'),
 (4, 'ContID4', 'CID3', 'Yari', 'yari@yahoo.com', '9896756455', '2017-04-16 14:03:07', '2017-04-16 14:03:07');
 
@@ -101,9 +101,10 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `customer_id`, `company_name`, `address`, `city`, `prov`, `zip`, `country`, `brn`, `website`, `created_at`, `updated_at`) VALUES
-(1, 'CID1', 'Testing Company pvt ltd', 'testing address', 'testing city', 'testing prov', '123456', 'testing country', '12345678', 'www.testing.com', '2017-04-16 18:30:00', '2017-04-16 18:30:00'),
+(1, 'CID1', 'Testing Company', 'testing address', 'testing city', 'testing prov', '123456', 'testing country', '12345678', 'www.testing.com', '2017-04-16 18:30:00', '2017-04-18 01:12:47'),
 (2, 'CID2', 'second testing comp. pvt ltd', 'sec street', 'sec city', 'sec prov', '098765', 'sri lanka', '90897863', 'www.sec-test-company.com', '2017-04-16 13:59:52', '2017-04-16 13:59:52'),
-(3, 'CID3', 'Third new Company', 'thr street', 'thr city', 'thr prv', '4565322', 'Signapoor', '456908io', 'www.ThirdComp.com', '2017-04-16 14:00:45', '2017-04-16 14:00:45');
+(3, 'CID3', 'Third new Company', 'thr street', 'thr city', 'thr prv', '4565322', 'Signapoor', '456908io', 'www.ThirdComp.com', '2017-04-16 14:00:45', '2017-04-16 14:00:45'),
+(4, 'CID4', 'Fourth Testing', 'fr street', 'FrCity', 'FPV', '90989', 'FPCountry', '123456ed', 'www.fourthtesting.com', '2017-04-18 02:15:11', '2017-04-18 02:15:11');
 
 -- --------------------------------------------------------
 
@@ -194,7 +195,7 @@ ALTER TABLE `contacts`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `migrations`
 --

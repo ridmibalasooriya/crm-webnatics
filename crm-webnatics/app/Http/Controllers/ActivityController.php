@@ -21,6 +21,32 @@ class ActivityController extends BaseController
 		return View('searchActivity')->with('activities',  $activities::all());
     }
 	
+	//Search By Company Name
+	public function searchActivityByCN(){
+		$result=$_GET['cpName'];
+		
+		$customers=Customer::where('company_name','like', $result.'%')->get();
+		
+		$custIds=[];
+		$i=0;
+		
+		foreach($customers as $customer){
+			$custIds[$i]=$customer->customer_id;
+			$i++;
+		}
+		
+		$activities= new Activity;
+		$activity=[];
+		$j=0;
+		
+		foreach($custIds as $custId){
+			$activity[$i]=$activities->where('customer_id','=',$custId)->get();
+			$i++;
+		}
+				
+		return view('searchActivityByCN')->with('activities',$activity);		
+	}
+	
 	//Add new Contact
 	public function addActivity(){
 		

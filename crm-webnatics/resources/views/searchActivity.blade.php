@@ -33,64 +33,71 @@
 		</div>
 		{{Form::close()}}
 		
-		<table border="1" class="table table-hover">
-		<tr>
-			<th>Id</th>
-			<th>Activity Id</th>
-			<th>Company Name</th>
-			<th>Date</th>
-			<th>Activity Type</th>
-			<th>Outcomes</th>
-			<th>Sales Person</th>
-			<th></th>
-			<th></th>
-		</tr>
+		<div class='search-box'>
+			{{Form::hidden('searchUrl','searchActivityByCN',array('id'=>'searchUrl'))}}
+			{{Form::text('searchInput',null,array('class'=>'searchInput','id'=>'searchInput', 'placeholder'=>'Search Company...'))}}
+		</div>
 		
-		@php
-		$i=1;
-		@endphp
-		
-		@foreach($activities as $activity)
-		<tr>
+		<div id='searchResult'>		
+			<table border="1" class="table table-hover">
+			<tr>
+				<th>Id</th>
+				<th>Activity Id</th>
+				<th>Company Name</th>
+				<th>Date</th>
+				<th>Activity Type</th>
+				<th>Outcomes</th>
+				<th>Sales Person</th>
+				<th></th>
+				<th></th>
+			</tr>
+			
 			@php
-				$editId='activityEdit'.$i;
-				$deleteId='activityDelete'.$i;
-				$editIdHidden='activityEdit'.$i.'Hidden';
-				$deleteIdHidden='activityDelete'.$i.'Hidden';
+			$i=1;
 			@endphp
 			
-			<td>{{$activity->id}}</td>
-			<td>{{$activity->act_id}}</td>
-			<td>{{$activity->customer_id}}</td>
-			<td>{{$activity->date}}</td>
-			<td>{{$activity->activity_type}}</td>
-			<td>{{$activity->outcomes}}</td>
-			<td>{{$activity->sales_person}}</td>
-			<td>
-				{{Form::open(array('url' =>'editActivity')) }}
-				<div class="form-group">
-					{{Form::hidden('editIdHidden',$activity->id,array('id'=>$editIdHidden))}}		
-					{{Form::submit('Edit',['id'=>$editId,'class'=>'editCust btn btn-warning'])}}
-				</div>
-				{{Form::close()}}
-			</td>	
-			<td>
-				{{ Form::open(array('url' =>'deleteActivity')) }}
-				<div class="form-group">
-					{{Form::hidden('deleteIdHidden',$activity->id,array('id'=>$deleteIdHidden))}}		
-					{{Form::submit('Delete',['id'=>$deleteId,'class'=>'deleteCust btn btn-danger'])}}
-				</div>
-				{{Form::close()}}
-			</td>	
-		</tr>
-		
-		@php
-		$i++;
-		@endphp
-		
-		@endforeach
-		
-		</table>
+			@foreach($activities as $activity)
+			<tr>
+				@php
+					$editId='activityEdit'.$i;
+					$deleteId='activityDelete'.$i;
+					$editIdHidden='activityEdit'.$i.'Hidden';
+					$deleteIdHidden='activityDelete'.$i.'Hidden';
+				@endphp
+				
+				<td>{{$activity->id}}</td>
+				<td>{{$activity->act_id}}</td>
+				<td>{{$activity->customers->company_name}}</td>
+				<td>{{$activity->date}}</td>
+				<td>{{$activity->activity_type}}</td>
+				<td>{{$activity->outcomes}}</td>
+				<td>{{$activity->sales_person}}</td>
+				<td>
+					{{Form::open(array('url' =>'editActivity')) }}
+					<div class="form-group">
+						{{Form::hidden('editIdHidden',$activity->id,array('id'=>$editIdHidden))}}		
+						{{Form::submit('Edit',['id'=>$editId,'class'=>'editCust btn btn-warning'])}}
+					</div>
+					{{Form::close()}}
+				</td>	
+				<td>
+					{{ Form::open(array('url' =>'deleteActivity')) }}
+					<div class="form-group">
+						{{Form::hidden('deleteIdHidden',$activity->id,array('id'=>$deleteIdHidden))}}		
+						{{Form::submit('Delete',['id'=>$deleteId,'class'=>'deleteCust btn btn-danger'])}}
+					</div>
+					{{Form::close()}}
+				</td>	
+			</tr>
+			
+			@php
+			$i++;
+			@endphp
+			
+			@endforeach
+			
+			</table>
+		</div>
 	</div>
 	
 	@include('footer')

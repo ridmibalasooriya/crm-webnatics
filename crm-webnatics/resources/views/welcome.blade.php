@@ -26,7 +26,7 @@
 		<h1>Webnatics - CRM System</h1>
 		{{ Form::open(array('url' =>'searchCustomer')) }}
 		<div class="form-group">	
-			{{Form::submit('Open', array('class' => 'btn btn-default'))}}
+			{{Form::submit('Dashboard', array('class' => 'btn btn-default'))}}
 		</div>
 		{{Form::close()}}
 		

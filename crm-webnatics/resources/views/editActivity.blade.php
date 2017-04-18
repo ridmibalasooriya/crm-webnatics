@@ -39,13 +39,8 @@
 		</div>
 		
 		<div class="form-group">
-		{{Form::label('compId','Contact Id:')}}
-		{{Form::text('compId',$activity->customer_id,array('class'=>'form-control','id'=>'editCompId','readonly'=>'readonly'))}}
-		</div>
-		
-		<div class="form-group">
-		{{Form::label('compName','Company Name:')}}
-		{{Form::select('compName',$data['companyNames'],null,['placeholder' => 'Select Company','id'=>'editCompName','class' => 'form-control'])}}
+		{{Form::label('compId','Company Name:')}}
+		{{Form::select('compId',$data['companyNames'],$activity->customer_id,['id'=>'compId','class' => 'form-control'])}}
 		</div>
 		
 		<div class="form-group">
@@ -56,7 +51,7 @@
 		
 		<div class="form-group">
 		{{Form::label('actType','Activity Type:')}}
-		{{Form::select('actType',['Call' => 'Call', 'Email' => 'Email','Meeting' => 'Meeting'], null, ['placeholder' => 'Select Activity Type','class' => 'form-control'])}}
+		{{Form::select('actType',['Call' => 'Call', 'Email' => 'Email','Meeting' => 'Meeting'], $activity->activity_type, ['class' => 'form-control'])}}
 		</div>
 		
 		<div class="form-group">		

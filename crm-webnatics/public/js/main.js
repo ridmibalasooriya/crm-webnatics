@@ -144,11 +144,22 @@ $(document).ready(function () {
 		
 	});
 	
-	//Change Company Id when change name
-	$('#editCompName').change(function(){
-		$newVal=$('#editCompName').val();
-		$('#editCompId').val($newVal);
-		
-	});
+
+	//Search By Company Name      
+    $('#searchInput').keyup(function() {
+	var cName=$(this).val();
+	var loadURL=$('#searchUrl').val();
+    $.ajax({
+        url: loadURL,
+        type: 'GET',
+        data: {cpName :cName},
+        success: function(html){
+        	$('#searchResult').html(html);
+		},
+		  error: function(data) {
+			  alert(data);
+			}
+        });
+   }); 
 	
 });

@@ -15,11 +15,37 @@ class ContactController extends BaseController
 {
 	//Search Contact
     public function searchContact(){
+    	
 		$contacts= new Contact;
-		$customers=new Customer;	
 		
 		return View('searchContact')->with('contacts',  $contacts::all());
     }
+	
+	//Search By Company Name
+	public function searchContactByCN(){
+		$result=$_GET['cpName'];
+		
+		$customers=Customer::where('company_name','like', $result.'%')->get();
+		
+		$custIds=[];
+		$i=0;
+		
+		foreach($customers as $customer){
+			$custIds[$i]=$customer->customer_id;
+			$i++;
+		}
+		
+		$contacts= new Contact;
+		$contact=[];
+		$j=0;
+		
+		foreach($custIds as $custId){
+			$contact[$i]=$contacts->where('customer_id','=',$custId)->get();
+			$i++;
+		}
+				
+		return view('searchContactByCN')->with('contacts',$contact);		
+	}
 	
 	//Add new Contact
 	public function addContact(){

@@ -20,6 +20,15 @@ class CustomerController extends BaseController
 		return View('searchCustomer')->with('customers',  $customers::all());
     }
 	
+	//Search By Company Name
+	public function searchCustomerByCN(){
+		$result=$_GET['cpName'];
+		
+		$customer=Customer::where('company_name','like', $result.'%')->get();
+		
+		return view('searchCustomerByCN')->with('customers',$customer);		
+	}
+	
 	//Add new Customer
 	public function addCustomer(){
 		
@@ -73,6 +82,7 @@ class CustomerController extends BaseController
 		return View('editCustomer')->with('customers',$customers);
 	}
 	
+
 	//Update Edited Customer
 	public function updateCustomer(){
 		

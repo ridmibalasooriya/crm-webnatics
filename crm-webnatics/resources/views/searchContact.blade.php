@@ -34,62 +34,69 @@
 		</div>
 		{{Form::close()}}
 		
-		<table border="1" class="table table-hover">
-		<tr>
-			<th>Id</th>
-			<th>Contact Id</th>
-			<th>Company Name</th>
-			<th>Name</th>
-			<th>Email Address</th>
-			<th>Contact No</th>
-			<th></th>
-			<th></th>
-		</tr>
+		<div class='search-box'>
+			{{Form::hidden('searchUrl','searchContactByCN',array('id'=>'searchUrl'))}}
+			{{Form::text('searchInput',null,array('class'=>'searchInput','id'=>'searchInput', 'placeholder'=>'Search Company...'))}}
+		</div>
 		
-		@php
-		$i=1;
-		@endphp
-		
-		@foreach($contacts as $contact)
-		<tr>
+		<div id='searchResult'>
+			<table border="1" class="table table-hover">
+			<tr>
+				<th>Id</th>
+				<th>Contact Id</th>
+				<th>Company Name</th>
+				<th>Name</th>
+				<th>Email Address</th>
+				<th>Contact No</th>
+				<th></th>
+				<th></th>
+			</tr>
+			
 			@php
-				$editId='contactEdit'.$i;
-				$deleteId='contactDelete'.$i;
-				$editIdHidden='contactEdit'.$i.'Hidden';
-				$deleteIdHidden='contactDelete'.$i.'Hidden';
+			$i=1;
 			@endphp
 			
-			<td>{{$contact->id}}</td>
-			<td>{{$contact->cont_id}}</td>
-			<td>{{$contact->customer_id}}</td>
-			<td>{{$contact->name}}</td>
-			<td>{{$contact->email}}</td>
-			<td>{{$contact->contact_no}}</td>
-			<td>
-				{{Form::open(array('url' =>'editContact')) }}
-				<div class="form-group">
-					{{Form::hidden('editIdHidden',$contact->id,array('id'=>$editIdHidden))}}		
-					{{Form::submit('Edit',['id'=>$editId,'class'=>'editCust btn btn-warning'])}}
-				</div>
-				{{Form::close()}}
-			</td>	
-			<td>
-				{{ Form::open(array('url' =>'deleteContact')) }}
-				<div class="form-group">
-					{{Form::hidden('deleteIdHidden',$contact->id,array('id'=>$deleteIdHidden))}}		
-					{{Form::submit('Delete',['id'=>$deleteId,'class'=>'deleteCust btn btn-danger'])}}
-				</div>
-				{{Form::close()}}
-			</td>	
-		</tr>
-		
-		@php
-		$i++;
-		@endphp
-		
-		@endforeach
-		
-		</table>
+			@foreach($contacts as $contact)
+			<tr>
+				@php
+					$editId='contactEdit'.$i;
+					$deleteId='contactDelete'.$i;
+					$editIdHidden='contactEdit'.$i.'Hidden';
+					$deleteIdHidden='contactDelete'.$i.'Hidden';
+				@endphp
+				
+				<td>{{$contact->id}}</td>
+				<td>{{$contact->cont_id}}</td>
+				<td>{{$contact->customers->company_name}}</td>
+				<td>{{$contact->name}}</td>
+				<td>{{$contact->email}}</td>
+				<td>{{$contact->contact_no}}</td>
+				<td>
+					{{Form::open(array('url' =>'editContact')) }}
+					<div class="form-group">
+						{{Form::hidden('editIdHidden',$contact->id,array('id'=>$editIdHidden))}}		
+						{{Form::submit('Edit',['id'=>$editId,'class'=>'editCust btn btn-warning'])}}
+					</div>
+					{{Form::close()}}
+				</td>	
+				<td>
+					{{ Form::open(array('url' =>'deleteContact')) }}
+					<div class="form-group">
+						{{Form::hidden('deleteIdHidden',$contact->id,array('id'=>$deleteIdHidden))}}		
+						{{Form::submit('Delete',['id'=>$deleteId,'class'=>'deleteCust btn btn-danger'])}}
+					</div>
+					{{Form::close()}}
+				</td>	
+			</tr>
+			
+			@php
+			$i++;
+			@endphp
+			
+			@endforeach
+			
+			</table>
+		</div>
 	</div>
 	
 	@include('footer')

@@ -8,6 +8,6 @@ class Activity extends Model
 {
      public function customers()
 	{
-	    return $this->belongsTo('App\Customer');
+	    return $this->belongsTo('App\Customer','customer_id','customer_id');
 	}
 }

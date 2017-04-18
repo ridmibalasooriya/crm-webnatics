@@ -20,6 +20,8 @@ Route::get('/', function () {
 
 Route::get('/searchCustomer','CustomerController@searchCustomer');
 
+Route::get('searchCustomerByCN',array('as'=>'searchCustomerByCN','uses'=>'CustomerController@searchCustomerByCN'));
+
 Route::post('/searchCustomer','CustomerController@searchCustomer');
 
 Route::post('/addCustomer','CustomerController@addCustomer');
@@ -36,6 +38,8 @@ Route::post('/deleteCustomer','CustomerController@deleteCustomer');
 
 Route::get('/searchContact','ContactController@searchContact');
 
+Route::get('searchContactByCN',array('as'=>'searchContactByCN','uses'=>'ContactController@searchContactByCN'));
+
 Route::post('/addContact','ContactController@addContact');
 
 Route::post('/updateNewContact','ContactController@updateNewContact');
@@ -49,6 +53,8 @@ Route::post('/updateContact','ContactController@updateContact');
 /* --------------------------- Contact ----------------------------------- */
 
 Route::get('/searchActivity','ActivityController@searchActivity');
+
+Route::get('searchActivityByCN',array('as'=>'searchActivityByCN','uses'=>'ActivityController@searchActivityByCN'));
 
 Route::post('/addActivity','ActivityController@addActivity');
 

@@ -39,13 +39,8 @@
 		</div>
 		
 		<div class="form-group">
-		{{Form::label('compId','Contact Id:')}}
-		{{Form::text('compId',$contact->customer_id,array('class'=>'form-control','id'=>'editCompId','readonly'=>'readonly'))}}
-		</div>
-		
-		<div class="form-group">
-		{{Form::label('compName','Company Name:')}}
-		{{Form::select('compName',$data['companyNames'],null,['placeholder' => 'Select Company','id'=>'editCompName','class' => 'form-control'])}}
+		{{Form::label('compId','Company Name:')}}
+		{{Form::select('compId',$data['companyNames'],$contact->customer_id,['placeholder' => 'Select Company','id'=>'compId','class' => 'form-control'])}}
 		</div>
 		
 		<div class="form-group">

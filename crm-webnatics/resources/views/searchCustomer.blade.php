@@ -33,68 +33,75 @@
 		</div>
 		{{Form::close()}}
 		
-		<table border="1" class="table table-hover">
-		<tr>
-			<th>Company Id</th>
-			<th>Company Name</th>
-			<th>Address</th>
-			<th>City</th>
-			<th>Province</th>
-			<th>Zip Code</th>
-			<th>Country</th>
-			<th>BRNo</th>
-			<th>Website</th>
-			<th></th>
-			<th></th>
-		</tr>
+		<div class='search-box'>
+			{{Form::hidden('searchUrl','searchCustomerByCN',array('id'=>'searchUrl'))}}
+			{{Form::text('searchInput',null,array('class'=>'searchInput','id'=>'searchInput', 'placeholder'=>'Search Company...'))}}
+		</div>
 		
-		@php
-		$i=1;
-		@endphp
-		
-		@foreach($customers as $customer)
-		<tr>
+		<div id='searchResult'>
+			<table border="1" class="table table-hover">
+			<tr>
+				<th>Company Id</th>
+				<th>Company Name</th>
+				<th>Address</th>
+				<th>City</th>
+				<th>Province</th>
+				<th>Zip Code</th>
+				<th>Country</th>
+				<th>BRNo</th>
+				<th>Website</th>
+				<th></th>
+				<th></th>
+			</tr>
+			
 			@php
-				$editId='customerEdit'.$i;
-				$deleteId='customerDelete'.$i;
-				$editIdHidden='customerEdit'.$i.'Hidden';
-				$deleteIdHidden='customerDelete'.$i.'Hidden';
+			$i=1;
 			@endphp
 			
-			<td>{{$customer->customer_id}}</td>
-			<td>{{$customer->company_name}}</td>
-			<td>{{$customer->address}}</td>
-			<td>{{$customer->city}}</td>
-			<td>{{$customer->prov}}</td>
-			<td>{{$customer->zip}}</td>
-			<td>{{$customer->country}}</td>
-			<td>{{$customer->brn}}</td>
-			<td>{{$customer->website}}</td>
-			<td>
-				{{Form::open(array('url' =>'editCustomer')) }}
-				<div class="form-group">
-					{{Form::hidden('editIdHidden',$customer->id,array('id'=>$editIdHidden))}}		
-					{{Form::submit('Edit',['id'=>$editId,'class'=>'editCust btn btn-warning'])}}
-				</div>
-				{{Form::close()}}
-			</td>	
-			<td>
-				{{ Form::open(array('url' =>'deleteCustomer')) }}
-				<div class="form-group">
-					{{Form::hidden('deleteIdHidden',$customer->id,array('id'=>$deleteIdHidden))}}		
-					{{Form::submit('Delete',['id'=>$deleteId,'class'=>'deleteCust btn btn-danger'])}}
-				</div>
-				{{Form::close()}}
-			</td>	
-		</tr>
-		
-		@php
-		$i++;
-		@endphp
-		
-		@endforeach
-		
-		</table>
+			@foreach($customers as $customer)
+			<tr>
+				@php
+					$editId='customerEdit'.$i;
+					$deleteId='customerDelete'.$i;
+					$editIdHidden='customerEdit'.$i.'Hidden';
+					$deleteIdHidden='customerDelete'.$i.'Hidden';
+				@endphp
+				
+				<td>{{$customer->customer_id}}</td>
+				<td>{{$customer->company_name}}</td>
+				<td>{{$customer->address}}</td>
+				<td>{{$customer->city}}</td>
+				<td>{{$customer->prov}}</td>
+				<td>{{$customer->zip}}</td>
+				<td>{{$customer->country}}</td>
+				<td>{{$customer->brn}}</td>
+				<td>{{$customer->website}}</td>
+				<td>
+					{{Form::open(array('url' =>'editCustomer')) }}
+					<div class="form-group">
+						{{Form::hidden('editIdHidden',$customer->id,array('id'=>$editIdHidden))}}		
+						{{Form::submit('Edit',['id'=>$editId,'class'=>'editCust btn btn-warning'])}}
+					</div>
+					{{Form::close()}}
+				</td>	
+				<td>
+					{{ Form::open(array('url' =>'deleteCustomer')) }}
+					<div class="form-group">
+						{{Form::hidden('deleteIdHidden',$customer->id,array('id'=>$deleteIdHidden))}}		
+						{{Form::submit('Delete',['id'=>$deleteId,'class'=>'deleteCust btn btn-danger'])}}
+					</div>
+					{{Form::close()}}
+				</td>	
+			</tr>
+			
+			@php
+			$i++;
+			@endphp
+			
+			@endforeach
+			
+			</table>
+		</div>
 	</div>
 	
 	@include('footer')
