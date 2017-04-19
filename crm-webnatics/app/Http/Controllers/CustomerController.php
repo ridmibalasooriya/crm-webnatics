@@ -8,7 +8,10 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Input;
 use Mail;
+
 use App\Customer;
+use App\Contact;
+use App\Activity;
 
 
 class CustomerController extends BaseController
@@ -110,6 +113,18 @@ class CustomerController extends BaseController
 	
 		$customers=Customer::find($id);
 		
+		$contact=Contact::where('customer_id','=',$customers->customer_id)->get();
+			
+		foreach($contact as $cont){
+			$cont->delete();
+		}
+		
+		$activity=Activity::where('customer_id','=',$customers->customer_id)->get();
+			
+		foreach($activity as $act){
+			$act->delete();
+		}
+			
 		$customers->delete();
 		
 		return redirect('searchCustomer')->with('customers',  $customers::all());

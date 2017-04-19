@@ -68,11 +68,13 @@
 		<div class="form-group">		
 		{{Form::label('brn','Business Registration No:')}}
 		{{Form::text('brn',$customers->brn,array('class'=>'form-control','id'=>'brn'))}}
+		<div id='valMsg'></div>
 		</div>
 		
 		<div class="form-group">
 		{{Form::label('website','Website:')}}
 		{{Form::text('website',$customers->website,array('class'=>'form-control','id'=>'website'))}}
+		<div id='valMsg'></div>
 		</div>
 		
 		<div class="form-group">

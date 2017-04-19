@@ -1,5 +1,7 @@
 $(document).ready(function () {
 	
+	var validVal=true;
+	
 	$('#submitForm').submit(function(){
 		
 		var returnVal=false;
@@ -16,13 +18,13 @@ $(document).ready(function () {
 			}
 		});
 		
-		if(EmptyField==true){
+		if((EmptyField==true)||(validVal==false)){
 			$.each(EmptyFieldId, function(index, value) {
 				FieldId="#"+value;
 				$(FieldId).parent().css( "background-color", "#ff9999" );
 			});	
 			
-			alert('Please Fill All Fields');
+			alert('Please Fill All Fields with Valid Data.!');
 			var firstElementId='#'+EmptyFieldId[0];
 			$(firstElementId).focus();
 			
@@ -50,10 +52,12 @@ $(document).ready(function () {
 		if(brnLegth>8){
 			$(this).siblings('#valMsg').html("Invalid.! BRN should have 8 characters");
 			$(this).parent().css( "background-color", "#ff9999" );
+			validVal=false;
 		}
 		else{
 			$(this).siblings('#valMsg').html("");
 			$(this).parent().css( "background-color", "#ffffff" );
+			validVal=true;
 		}	
 		
 	});
@@ -64,10 +68,12 @@ $(document).ready(function () {
 		if(brnLegth!=8){
 			$(this).siblings('#valMsg').html("Invalid.! BRN should have 8 characters");
 			$(this).parent().css( "background-color", "#ff9999" );
+			validVal=false;
 		}
 		else{
 			$(this).siblings('#valMsg').html("");
 			$(this).parent().css( "background-color", "#ffffff" );
+			validVal=true;
 		}	
 		
 	});
@@ -83,10 +89,12 @@ $(document).ready(function () {
 		if(!validUrl){
 			$(this).siblings('#valMsg').html("Invalid Website Link.!");
 			$(this).parent().css( "background-color", "#ff9999" );
+			validVal=false;
 		}
 		else{
 			$(this).siblings('#valMsg').html("");
 			$(this).parent().css( "background-color", "#ffffff" );
+			validVal=true;
 		}	
 		
 		
@@ -103,22 +111,43 @@ $(document).ready(function () {
 		if(!validEmail){
 			$(this).siblings('#valMsg').html("Invalid Email Address");
 			$(this).parent().css( "background-color", "#ff9999" );
+			validVal=false;
 		}
 		else{
 			$(this).siblings('#valMsg').html("");
 			$(this).parent().css( "background-color", "#ffffff" );
+			validVal=true;
 		}
 		
 		
 	});
 	
-	$('#contNo').keyup(function(){
+	$('#contNo').keypress(function (e) {
+	    	    
+	    var reg=/\d$/g;
+		var regExContNo = new RegExp(reg);		
+		var c = String.fromCharCode(e.which);
 		
 		var phoneVal=$(this).val();
+		
+		var validContNo =regExContNo.test(c);
+		
+		if((!validContNo)&&(e.keyCode != 8)){		
+			return false;
+		}
+	    
+	});
+	
+	$('#contNo').keypress(function(e){
+		
+		var phoneVal=$(this).val();	
+	
+		
 		var phoneLegth=phoneVal.length;
-		if(phoneLegth>10){
+		if((phoneLegth>=10)&&(e.keyCode != 8)){
 			$(this).siblings('#valMsg').html("Invalid Phone No");
 			$(this).parent().css( "background-color", "#ff9999" );
+			return false;
 		}
 		else{
 			$(this).siblings('#valMsg').html("");
@@ -135,17 +164,27 @@ $(document).ready(function () {
 		if(phoneLegth!=10){
 			$(this).siblings('#valMsg').html("Invalid Phone No");
 			$(this).parent().css( "background-color", "#ff9999" );
+			validVal=false;
 		}
 		else{
 			$(this).siblings('#valMsg').html("");
 			$(this).parent().css( "background-color", "#ffffff" );
+			validVal=true;
 		}
 		
 		
 	});
 	
+	
+	//Confirm Message before deleting record.
+	$('.deleteCust').click(function(){		
+		var confMsg=confirm("Are You Sure You Want to Delete This Record?");
+		return confMsg;
+		
+	});
+	
 
-	//Search By Company Name      
+	//Search By Company Name Ajax for Customer/Contact/Activity  
     $('#searchInput').keyup(function() {
 	var cName=$(this).val();
 	var loadURL=$('#searchUrl').val();
